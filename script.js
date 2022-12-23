@@ -25,14 +25,20 @@ fetch(dataUrl)
     console.log(data[0].lon);
 
 // // //Grab weather based on lat/lon
-    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey;
+    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?cnt=1&lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey;
 fetch(weatherUrl)
     .then(function(response){
         return response.json();
     })
-    .then(function (secondData){
+    .catch(console.error())
+    .then(function (data){
+    myObj = JSON.stringify(data.list);
+    console.log(myObj);
 // // //Insert weather to searchResults
-    forecast.innerHTML=secondData.list.weather.icon;
-    console.log(secondData.list.weather);
+
+
+    // forecast.innerHTML=myObj;
     })
+    // weather = JSON.stringify(data.list);
+    // console.log(weather);
 })
